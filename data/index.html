@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- 
+  --------------------------------------------------------------------------------
+  27th Sept 2020
+  Author: RealBadDad
+  Platforms: NodeMCU 1.0 (ESP-12E Module) 
+  ------------------------------------------------------------------------------
+  Description: 
+  Minecraft Torch
+
+  ------------------------------------------------------------------------------
+  License:
+  Please see attached LICENSE.txt file for details.
+--------------------------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <script src="myscripts.js"></script> 
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+  <title>Light Controller</title>
+  <meta name="description" content="Light Control Webpage"/>
+  <meta name="author" content="RealBadDad"/>
+</head>
+
+<body onload="javascript:init()">
+
+  <div class="header">
+    <img src="logo.png" id="left_image">
+    <img src="logo.png" id="right_image">
+    <div>
+      <h1 id="Heading1">  </h1>
+    </div>
+    <div>
+      <h2 id="Heading2">  </h2>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-6 contentblock">
+
+      <!-- Rounded switch -->
+      <div class="buttoncontainer">
+        <label for="Itemonoff">ON/OFF</label>
+        <div style="width : 70%;">
+          <label class="switch">
+            <input type="checkbox" id="Itemonoff" onclick="sendDataPacket()"/>
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+            
+      <div class="slidecontainer">
+        <label for="Brightness">Intensity</label>
+        <input type="range" class="barslider" min="10" max="255" id="Brightness" onmouseup="sendDataPacket()"/>
+      </div>
+    
+      <div class="slidecontainer">
+        <label for="Rate">Rate</label>
+        <input type="range" class="barslider" min="0" max="255" id="Rate" onmouseup="sendDataPacket()"/>
+      </div>
+
+      <div class="dropselectcontainer">
+        <label for="Effects">Effect</label>
+        <select name="Effects" id="Effects" onclick="sendDataPacket()">
+          <option value="Solid " selected="selected">0--->Solid - Fade</option>
+          <option value="Rainbow">1--->Rainbow</option>
+          <option value="Flame">2--->Flame</option>
+          <option value="Dinner">3--->Dinner</option>
+          <option value="BedTime">4--->BedTime</option>
+          <option value="Too loud">5--->Too loud</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="col-6 contentblock">
+
+      <div class="slidecontainer">
+        <label for="UserReqRed"> Red </label>
+        <input type="range" class="barslider" min="0" max="255" id="UserReqRed" onmouseup="sendDataPacket()" />
+        </label>
+      </div>
+
+      <div class="slidecontainer">
+        <label for="UserReqGreen"> Green </label>
+        <input type="range" class="barslider" min="0" max="255" id="UserReqGreen" onmouseup="sendDataPacket()" />
+      </div>
+
+      <div class="slidecontainer">
+        <label for="UserReqBlue"> Blue </label>
+        <input type="range" class="barslider" min="0" max="255" id="UserReqBlue" onmouseup="sendDataPacket()" />
+      </div>
+
+      <div class="coloursample" id="coloursample">
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-12 contentblock">
+      <div class="btn-group">
+        <button class="button" onmouseup="RequestEffect(3)">Dinner</button>
+        <button class="button" onmouseup="RequestEffect(4)">Bedtime</button>
+        <button class="button" onmouseup="RequestEffect(5)">Too Loud</button>
+      </div>
+      <p style="clear:both"><br></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="http://realbaddad.com">RealBadDad.com</a>
+  </div>
+
+
+</body>
+
+</html>
